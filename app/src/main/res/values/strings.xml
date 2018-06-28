@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Algorithm</string>
     <string name="menu_search">1</string>
-    <string name="menu_setting">给个评分</string>
+    <string name="menu_ranking">给个评分</string>
+    <string name="hot_topic">精选算法</string>
+    <string name="data_structure">数据结构</string>
+    <string name="array">数组</string>
 </resources>

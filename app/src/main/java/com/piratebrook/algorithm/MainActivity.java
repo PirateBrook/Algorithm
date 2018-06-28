@@ -7,14 +7,24 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.Window;
 
+import com.nightonke.wowoviewpager.WoWoViewPager;
+
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
+    private ClipViewPager mViewpager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +38,26 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        mViewpager = findViewById(R.id.viewpager);
+        setUpViewPager(mViewpager);
+    }
+
+    private void setUpViewPager(ClipViewPager viewpager) {
+        final List<Integer> resIds = Arrays.asList(R.layout.handpick_item,
+                R.layout.handpick_item, R.layout.handpick_item);
+        ClipViewAdapter clipViewAdapter = new ClipViewAdapter(resIds, R.layout.handpick_item);
+        viewpager.setAdapter(clipViewAdapter);
+        ViewGroup parent = (ViewGroup) viewpager.getParent();
+        if (parent != null) {
+            parent.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return mViewpager.dispatchTouchEvent(event);
+                }
+            });
+        }
+        mViewpager.setCurrentItem(1);
+
     }
 
     @Override
@@ -82,4 +112,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
