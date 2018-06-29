@@ -26,16 +26,16 @@ public class ClipViewPager extends WoWoViewPager {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_UP) {
-            View view = viewOfClickOnScreen(ev);
-            if (view != null) {
-                final int position = indexOfChild(view);
-                final int currentItem = getCurrentItem();
-                if (currentItem != position) {
-                    setCurrentItem(indexOfChild(view), true);
-                }
-            }
-        }
+//        if (ev.getAction() == MotionEvent.ACTION_UP) {
+//            View view = viewOfClickOnScreen(ev);
+//            if (view != null) {
+//                final int position = indexOfChild(view);
+//                final int currentItem = getCurrentItem();
+//                if (currentItem != position) {
+//                    setCurrentItem(indexOfChild(view), true);
+//                }
+//            }
+//        }
         return super.dispatchTouchEvent(ev);
     }
 

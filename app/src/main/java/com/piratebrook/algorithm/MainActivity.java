@@ -10,14 +10,11 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.view.Window;
 
-import com.nightonke.wowoviewpager.WoWoViewPager;
+import com.alibaba.android.arouter.launcher.ARouter;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private ClipViewPager mViewpager;
+    private BlockView mBvArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +38,17 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         mViewpager = findViewById(R.id.viewpager);
         setUpViewPager(mViewpager);
+        mBvArray = findViewById(R.id.bv_array);
+        mBvArray.setOnClickListener(mBvClickListener);
     }
+
+
+    private final View.OnClickListener mBvClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ARouter.getInstance().build("/data/array").navigation();
+        }
+    };
 
     private void setUpViewPager(ClipViewPager viewpager) {
         final List<Integer> resIds = Arrays.asList(R.layout.handpick_item,
